@@ -1,0 +1,215 @@
+/* ◀ body 에서 flex 관련 속성 삭제 */
+body {
+  margin: 0;
+  background: #111;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ◀ 우리만 flex 중앙 정렬 */
+#game-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 100vh;
+  flex-shrink: 0;       /* 가로 크기 고정 */
+  width: 500px;         /* gameWidth */
+  margin: 0 ;      
+  position: relative;   /* 필요하면 */
+}
+
+/* 캔버스는 그대로 */
+#gameCanvas {
+  display: block;
+}
+
+#bgVideo {
+  position: fixed;      /* 플렉스 레이아웃에서 분리 */
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  object-fit: cover;
+  z-index: -1;          /* 게임 캔버스보다 아래로 */
+}
+
+/* 우측 리스트 */
+.song-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;    /* 스크롤 */
+  height: 100%;        /* 부모 높이에 맞춰 스크롤 */
+}
+
+.song-list li {
+  display: flex;
+  justify-content: space-between;  /* 좌우 정렬 */
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid #444;
+  cursor: pointer;
+  color: #eee;
+  background: #2a5cb6;             /* 예시 배경색 */
+  transition: background .2s;
+}
+
+.song-list li:hover {
+  background: #234f9e;
+}
+
+.song-list li.selected {
+  background: #1f477f;
+}
+
+.song-list .song-title {
+  text-align: left;
+  font-size: 16px;
+  flex: 1;                         /* 남은 공간 차지 */
+}
+
+.song-list .star-rating {
+  text-align: right;
+  font-size: 16px;
+  width: 80px;                     /* 고정 너비 or auto */
+}
+
+/* ─── 노래 선택 화면 레이아웃 ─── */
+.select-container {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 20px;
+  padding: 20px;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+/* ◀ Preview 패널 */
+.preview-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #222;
+  border-radius: 8px;
+  padding: 16px;
+}
+.preview-panel .song-title {
+  font-size: 24px;
+  color: #fff;
+  margin-bottom: 12px;
+}
+.preview-panel .star-rating {
+  font-size: 20px;
+  color: gold;
+  margin-bottom: 20px;
+}
+.preview-panel .btn-play {
+  width: 100%;
+  padding: 12px;
+  font-size: 18px;
+  background: #e22;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background .2s;
+}
+.preview-panel .btn-play:hover {
+  background: #c11;
+}
+
+/* ◀ 리스트 패널 스크롤 영역 보장 */
+.list-panel {
+  overflow-y: auto;
+}
+
+/* preview-panel 안의 커버 이미지 */
+.preview-panel .cover-img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  object-fit: cover;
+}
+
+.song-list li {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid #444;
+  cursor: pointer;
+  background: #2a5cb6;
+  transition: background .2s;
+}
+
+/* 썸네일 */
+.cover-thumb {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+/* 제목은 이미지 옆에, 남은 공간 차지 */
+.song-list .song-title {
+  margin-left: 12px;
+  font-size: 16px;
+  color: #fff;
+  flex: 1;
+  text-align: left;
+}
+
+/* 별 평점은 맨 오른쪽으로 */
+.song-list .star-rating {
+  margin-left: auto;
+  font-size: 16px;
+  color: gold;
+}
+
+/* 공통 버튼 그룹 */
+.button-group {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.button-group button {
+  flex: 1;
+  padding: 8px 0;
+  background: #444;
+  color: #eee;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+.button-group button:hover {
+  background: #555;
+}
+
+/* 선택된 상태 */
+.button-group button.selected {
+  background: #eee;
+  color: #222;
+}
+
+/* (기존) 곡 리스트, 프리뷰 패널 스타일 그대로 유지… */
+
+
+/* ─── 난이도 / 속도 토글 버튼을 균등 분할 ─── */
+.difficulty-toggle,
+.speed-toggle {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+/* 각 버튼이 동일한 flex 비율을 갖도록 */
+.difficulty-toggle button,
+.speed-toggle button {
+  flex: 1;
+  min-width: 0;       /* 텍스트 오버플로우 방지 */
+  text-align: center; /* 글자 중앙 정렬 */
+}
+
+.preview-panel .button-group {
+  width: 100%;
+}

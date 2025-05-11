@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>리듬 게임</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 배경 비디오 -->
+  <video id="bgVideo" src="assets/bg.mp4" loop muted playsinline></video>
+
+<!-- 1) 노래 선택 화면 -->
+ <div id="songSelect" class="select-container">
+   <!-- ◀ 좌측: 곡 제목 + 별 + PLAY -->
+   <aside class="preview-panel">
+    <img id="coverImg" class="cover-img" src="" alt="Cover" />
+     <h2 id="songTitle" class="song-title"></h2>
+     <div id="starRating" class="star-rating"></div>
+
+    <!-- 난이도 토글 -->
+    <div class="button-group difficulty-toggle">
+      <button class="diff-btn selected"         data-diff="easy">EASY</button>
+      <button class="diff-btn"         data-diff="normal">NORMAL</button>
+      <button class="diff-btn"         data-diff="hard">HARD</button>
+    </div>
+
+    <!-- 속도 토글 -->
+    <div class="button-group speed-toggle">
+      <button class="speed-btn selected" data-speed="1">X1</button>
+      <button class="speed-btn"          data-speed="2">X2</button>
+      <button class="speed-btn"          data-speed="3">X3</button>
+    </div>
+
+
+     <button id="startBtn" class="btn-play">PLAY</button>
+   </aside>
+
+   <!-- ▶ 우측: 곡 리스트 -->
+   <section class="list-panel">
+     <ul id="list" class="song-list"></ul>
+   </section>
+ </div>
+
+  <!-- 2) 게임 화면 (초기에는 숨김) -->
+  <div id="game-container" style="display:none">
+    <canvas id="gameCanvas" width="500" height="900"></canvas>
+    <!-- BGM 재생용 audio -->
+    <audio id="bgm"></audio>
+  </div>
+
+  <!-- 선택 화면 로직 -->
+  <script src="songSelect.js"></script>
+</body>
+</html>
